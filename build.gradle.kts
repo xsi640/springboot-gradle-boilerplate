@@ -2,11 +2,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-    id("org.springframework.boot") version "2.4.6"
-    id("io.spring.dependency-management") version "1.0.11.RELEASE"
-    kotlin("jvm") version "1.5.0"
-    kotlin("plugin.spring") version "1.5.0"
-    kotlin("plugin.jpa") version "1.5.0"
+    id("org.springframework.boot")
+    id("io.spring.dependency-management")
+    kotlin("jvm")
+    kotlin("plugin.spring")
+    kotlin("plugin.noarg")
+    kotlin("plugin.allopen")
 }
 
 allprojects {
@@ -17,7 +18,6 @@ allprojects {
         plugin("io.spring.dependency-management")
         plugin("kotlin")
         plugin("kotlin-spring")
-        plugin("kotlin-jpa")
         plugin("kotlin-allopen")
         plugin("kotlin-noarg")
     }
@@ -29,10 +29,10 @@ allprojects {
 
 
     val vers = mapOf(
-        "commons_io" to "2.8.0",
+        "commons_io" to "2.11.0",
         "commons_codec" to "1.15",
         "commons_lang" to "3.12.0",
-        "jackson" to "2.11.3"
+        "commons_compress" to "1.21",
     )
 
     rootProject.extra.set("vers", vers)
@@ -64,6 +64,7 @@ allprojects {
         all {
             exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging")
             exclude(module = "slf4j-log4j12")
+            resolutionStrategy.cacheChangingModulesFor(10, "minutes")
         }
     }
 

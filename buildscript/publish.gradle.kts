@@ -32,9 +32,23 @@ if (user != null && pwd != null) {
                     }
                     url = uri(
                         if (VersionNumber.parse(project.version.toString()).qualifier == "SNAPSHOT") {
-                            "http://192.168.1.254:8081/nexus/repository/maven-snapshot/"
+                            "http://10.10.3.28:8082/repository/maven-snapshot/"
                         } else {
-                            "http://192.168.1.254:8081/nexus/repository/maven-release/"
+                            "http://10.10.3.28:8082/repository/maven-release/"
+                        }
+                    )
+                }
+                maven {
+                    credentials {
+                        username = user
+                        password = pwd
+                        isAllowInsecureProtocol = true
+                    }
+                    url = uri(
+                        if (VersionNumber.parse(project.version.toString()).qualifier == "SNAPSHOT") {
+                            "http://10.10.3.34:8081/nexus/repository/maven2-snapshot/"
+                        } else {
+                            "http://10.10.3.34:8081/nexus/repository/maven2-release/"
                         }
                     )
                 }

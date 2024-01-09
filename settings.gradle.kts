@@ -2,7 +2,6 @@ rootProject.name = "springboot-gradle-"
 
 pluginManagement {
     val kotlinVersion: String by settings
-    val kspVersion: String by settings
     val springBootVersion: String by settings
     val springBootManagementVersion: String by settings
 
@@ -10,7 +9,6 @@ pluginManagement {
         id("java")
         id("org.springframework.boot") version springBootVersion
         id("io.spring.dependency-management") version springBootManagementVersion
-        id("com.google.devtools.ksp") version kspVersion
 
         kotlin("jvm") version kotlinVersion
         kotlin("plugin.spring") version kotlinVersion
@@ -29,7 +27,7 @@ pluginManagement {
                 password = pwd
                 isAllowInsecureProtocol = true
             }
-            url = uri("http://172.16.11.231:8081/nexus/repository/maven2-group/")
+            url = uri("http://10.10.3.28:8082/repository/maven-group/")
         }
     }
 }
